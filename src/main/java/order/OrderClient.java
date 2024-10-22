@@ -1,5 +1,6 @@
 package order;
 
+import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import model.BaseReqSpecURI;
 import model.StellarOrder;
@@ -41,4 +42,12 @@ public class OrderClient extends BaseReqSpecURI {
                 .get("/api/orders")
                 .then();
     }
+    public Response getOrderIngredientId() {
+         return  given()
+                 .spec(getBaseReqSpec())
+                 .when()
+                 .get("/api/ingredients")
+                ;
+    }
+
 }

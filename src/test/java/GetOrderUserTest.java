@@ -2,13 +2,14 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
+import model.GetIngredientId;
 import model.StellarUser;
 import model.StellarOrder;
 import order.OrderClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import testValue.TestValue;
+import testvalue.TestValue;
 import user.UserClient;
 
 import java.util.ArrayList;
@@ -41,9 +42,9 @@ public class GetOrderUserTest {
         String accessTokenWithBearer = createResponse.extract().path("accessToken");
         String accessToken = accessTokenWithBearer.replace("Bearer ", "");
         ArrayList<String> ingredients = new ArrayList<>();
-        ingredients.add(TestValue.BUN_TEST);
-        ingredients.add(TestValue.FILLING_ONE_TEST);
-        ingredients.add(TestValue.FILLING_TWO_TEST);
+        ingredients.add(new GetIngredientId().getid("Флюоресцентная булка R2-D3"));
+        ingredients.add(new GetIngredientId().getid("Мини-салат Экзо-Плантаго"));
+        ingredients.add(new GetIngredientId().getid("Хрустящие минеральные кольца"));
         StellarOrder StellarOrder = new StellarOrder(ingredients);
         orderClient.orderWithAuth(accessToken, StellarOrder)
                 .assertThat().statusCode(HTTP_OK);
@@ -64,9 +65,9 @@ public class GetOrderUserTest {
         String accessTokenWithBearer = createResponse.extract().path("accessToken");
         String accessToken = accessTokenWithBearer.replace("Bearer ", "");
         ArrayList<String> ingredients = new ArrayList<>();
-        ingredients.add(TestValue.BUN_TEST);
-        ingredients.add(TestValue.FILLING_ONE_TEST);
-        ingredients.add(TestValue.FILLING_TWO_TEST);
+        ingredients.add(new GetIngredientId().getid("Флюоресцентная булка R2-D3"));
+        ingredients.add(new GetIngredientId().getid("Мини-салат Экзо-Плантаго"));
+        ingredients.add(new GetIngredientId().getid("Хрустящие минеральные кольца"));
         StellarOrder StellarOrder = new StellarOrder(ingredients);
         orderClient.orderWithAuth(accessToken, StellarOrder)
                 .assertThat().statusCode(HTTP_OK);
